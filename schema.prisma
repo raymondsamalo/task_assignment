@@ -1,10 +1,39 @@
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   // Wasp requires that the url is set to the DATABASE_URL environment variable.
   url      = env("DATABASE_URL")
 }
 
+enum TaskStatus {
+  DONE @map("Done")
+  TODO @map("To-do")
+}
+
+enum Skill {
+  FRONTEND @map("Frontend")
+  BACKEND @map("Brackend")
+}
 // Wasp requires the `prisma-client-js` generator to be present.
 generator client {
   provider = "prisma-client-js"
 }
+
+// Developer entity model
+model Developer {
+  id         Int    @id @default(autoincrement()) // use int for simplicity as this is not real production code yet -> we should use UUID for actual app
+  createdAt DateTime @default(now())
+  name String @unique
+  skills Skill[] //  a developer may have many skills
+  tasks Task[]
+}
+
+model Task {
+  id        Int       @id @default(autoincrement()) // use int for simplicity as this is not real production code yet -> we should use UUID for actual app
+  createdAt DateTime @default(now())
+  developer Developer @relation(references: [id], fields: [developerId])
+  developerId Int
+  status TaskStatus
+  skills Skill[] // a task may have many skills
+}
+
+

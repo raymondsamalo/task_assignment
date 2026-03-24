@@ -5,7 +5,12 @@ app task_assignment {
   title: "task_assignment",
   head: [
     "<link rel='icon' href='/favicon.ico' />",
-  ]
+  ],
+  db: {
+    seeds: [
+      
+    ]
+  }
 }
 
 route RootRoute { path: "/", to: MainPage }
