@@ -58,3 +58,36 @@ crud Skill {
     update: { isPublic: true,},
   },
 }
+
+
+api listSkill { // APIs and their implementations don't need to (but can) have the same name.
+  fn: import { listSkill } from "@src/apis",
+  entities: [Skill],
+  httpRoute: (GET, "/api/v1/skill/")
+}
+api getSkill { // APIs and their implementations don't need to (but can) have the same name.
+  fn: import { getSkill } from "@src/apis",
+  entities: [Skill],
+  httpRoute: (GET, "/api/v1/skill/:name")
+}
+api listDeveloper { // APIs and their implementations don't need to (but can) have the same name.
+  fn: import { listDeveloper } from "@src/apis",
+  entities: [Developer],
+  httpRoute: (GET, "/api/v1/developer/")
+}
+api getDeveloper { // APIs and their implementations don't need to (but can) have the same name.
+  fn: import { getDeveloper } from "@src/apis",
+  entities: [Developer],
+  httpRoute: (GET, "/api/v1/developer/:name")
+}
+
+api listTask { // APIs and their implementations don't need to (but can) have the same name.
+  fn: import { listTask } from "@src/apis",
+  entities: [Task],
+  httpRoute: (GET, "/api/v1/task/")
+}
+api getTask { // APIs and their implementations don't need to (but can) have the same name.
+  fn: import { getTask } from "@src/apis",
+  entities: [Task],
+  httpRoute: (GET, "/api/v1/task/:id")
+}

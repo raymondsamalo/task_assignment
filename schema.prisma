@@ -26,6 +26,7 @@ model Developer {
 
 model Task {
   id String @id @default(uuid())
+  title String 
   createdAt DateTime @default(now())
   developer Developer @relation(references: [id], fields: [developerId])
   developerId String
