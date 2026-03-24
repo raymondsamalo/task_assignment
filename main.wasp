@@ -1,0 +1,14 @@
+app task_assignment {
+  wasp: {
+    version: "^0.21.1"
+  },
+  title: "task_assignment",
+  head: [
+    "<link rel='icon' href='/favicon.ico' />",
+  ]
+}
+
+route RootRoute { path: "/", to: MainPage }
+page MainPage {
+  component: import { MainPage } from "@src/MainPage"
+}
