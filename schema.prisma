@@ -28,8 +28,8 @@ model Task {
   id String @id @default(uuid())
   title String @unique
   createdAt DateTime @default(now())
-  developer Developer @relation(references: [id], fields: [developerId])
-  developerId String
+  developer Developer? @relation(references: [id], fields: [developerId])
+  developerId String?
   status TaskStatus @default(TODO)
   skills Skill[] // a task may have many skills
 }

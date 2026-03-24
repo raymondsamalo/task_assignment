@@ -63,31 +63,37 @@ crud Skill {
 api listSkill { // APIs and their implementations don't need to (but can) have the same name.
   fn: import { listSkill } from "@src/apis",
   entities: [Skill],
-  httpRoute: (GET, "/api/v1/skill/")
+  httpRoute: (GET, "/api/v1/skills/")
 }
 api getSkill { // APIs and their implementations don't need to (but can) have the same name.
   fn: import { getSkill } from "@src/apis",
   entities: [Skill],
-  httpRoute: (GET, "/api/v1/skill/:name")
+  httpRoute: (GET, "/api/v1/skills/:name")
 }
 api listDeveloper { // APIs and their implementations don't need to (but can) have the same name.
   fn: import { listDeveloper } from "@src/apis",
   entities: [Developer],
-  httpRoute: (GET, "/api/v1/developer/")
+  httpRoute: (GET, "/api/v1/developers/")
 }
 api getDeveloper { // APIs and their implementations don't need to (but can) have the same name.
   fn: import { getDeveloper } from "@src/apis",
   entities: [Developer],
-  httpRoute: (GET, "/api/v1/developer/:name")
+  httpRoute: (GET, "/api/v1/developers/:name")
 }
 
 api listTask { // APIs and their implementations don't need to (but can) have the same name.
   fn: import { listTask } from "@src/apis",
   entities: [Task],
-  httpRoute: (GET, "/api/v1/task/")
+  httpRoute: (GET, "/api/v1/tasks/")
 }
 api getTask { // APIs and their implementations don't need to (but can) have the same name.
   fn: import { getTask } from "@src/apis",
   entities: [Task],
-  httpRoute: (GET, "/api/v1/task/:id")
+  httpRoute: (GET, "/api/v1/tasks/:id")
+}
+
+api createTask { // APIs and their implementations don't need to (but can) have the same name.
+  fn: import { createTask } from "@src/apis",
+  entities: [Task],
+  httpRoute: (POST, "/api/v1/tasks/")
 }
