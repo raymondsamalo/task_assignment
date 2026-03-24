@@ -17,3 +17,30 @@ route RootRoute { path: "/", to: MainPage }
 page MainPage {
   component: import { MainPage } from "@src/MainPage"
 }
+
+
+crud Tasks {
+  entity: Task,
+  operations: {
+    getAll: {
+      isPublic: true, // by default only logged in users can perform operations
+    },
+    get: { isPublic: true,},
+    create: { isPublic: true,
+    },
+    update: { isPublic: true,},
+  },
+}
+
+crud Developers {
+  entity: Developer,
+  operations: {
+    getAll: {
+      isPublic: true, // by default only logged in users can perform operations
+    },
+    get: { isPublic: true,},
+    create: { isPublic: true,
+    },
+    update: { isPublic: true,},
+  },
+}

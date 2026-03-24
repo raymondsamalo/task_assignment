@@ -6,13 +6,10 @@ datasource db {
 
 enum TaskStatus {
   DONE @map("Done")
+  Progress @map("In-Progress")
   TODO @map("To-do")
 }
 
-enum Skill {
-  FRONTEND @map("Frontend")
-  BACKEND @map("Brackend")
-}
 // Wasp requires the `prisma-client-js` generator to be present.
 generator client {
   provider = "prisma-client-js"
@@ -20,7 +17,7 @@ generator client {
 
 // Developer entity model
 model Developer {
-  id         Int    @id @default(autoincrement()) // use int for simplicity as this is not real production code yet -> we should use UUID for actual app
+  id String @id @default(uuid())
   createdAt DateTime @default(now())
   name String @unique
   skills Skill[] //  a developer may have many skills
@@ -28,12 +25,18 @@ model Developer {
 }
 
 model Task {
-  id        Int       @id @default(autoincrement()) // use int for simplicity as this is not real production code yet -> we should use UUID for actual app
+  id String @id @default(uuid())
   createdAt DateTime @default(now())
   developer Developer @relation(references: [id], fields: [developerId])
-  developerId Int
+  developerId String
   status TaskStatus
   skills Skill[] // a task may have many skills
 }
 
-
+model Skill {
+  id String @id @default(uuid())
+  name String @unique
+  createdAt DateTime @default(now())
+  tasks Task[]
+  developers Developer[]
+}
