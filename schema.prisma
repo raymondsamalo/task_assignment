@@ -5,9 +5,9 @@ datasource db {
 }
 
 enum TaskStatus {
-  DONE @map("Done")
-  Progress @map("In-Progress")
-  TODO @map("To-do")
+  DONE @map("done")
+  PROG @map("in_progress")
+  TODO @map("todo")
 }
 
 // Wasp requires the `prisma-client-js` generator to be present.
@@ -26,11 +26,11 @@ model Developer {
 
 model Task {
   id String @id @default(uuid())
-  title String 
+  title String @unique
   createdAt DateTime @default(now())
   developer Developer @relation(references: [id], fields: [developerId])
   developerId String
-  status TaskStatus
+  status TaskStatus @default(TODO)
   skills Skill[] // a task may have many skills
 }
 

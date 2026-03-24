@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "TaskStatus" AS ENUM ('Done', 'In-Progress', 'To-do');
+CREATE TYPE "TaskStatus" AS ENUM ('done', 'in_progress', 'todo');
 
 -- CreateTable
 CREATE TABLE "Developer" (
@@ -13,9 +13,10 @@ CREATE TABLE "Developer" (
 -- CreateTable
 CREATE TABLE "Task" (
     "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "developerId" TEXT NOT NULL,
-    "status" "TaskStatus" NOT NULL,
+    "status" "TaskStatus" NOT NULL DEFAULT 'todo',
 
     CONSTRAINT "Task_pkey" PRIMARY KEY ("id")
 );
@@ -43,6 +44,9 @@ CREATE TABLE "_SkillToTask" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Developer_name_key" ON "Developer"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Task_title_key" ON "Task"("title");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Skill_name_key" ON "Skill"("name");

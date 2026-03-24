@@ -10,6 +10,21 @@ import type {GetTask} from "wasp/server/api"
 import type {ListTask} from "wasp/server/api"
 import type {Task} from "wasp/entities"
 
+export const createTask = async (req, res, context: any) => {
+  const id = req.params.id
+  const object = await context.entities.Task.findFirst({
+    where: {
+        id: id
+    }
+  })
+  if(!object)
+  {
+    res.sendStatus(404)
+  }
+  res.set("Access-Control-Allow-Origin", "*"); // Example of modifying headers to override Wasp default CORS middleware.
+  res.json(object ?? {});
+};
+
 export const getTask: GetTask<{id: string}, Task, Task> = async (req, res, context: any) => {
   const id = req.params.id
   const object = await context.entities.Task.findFirst({
