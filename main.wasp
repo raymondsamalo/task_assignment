@@ -44,3 +44,17 @@ crud Developers {
     update: { isPublic: true,},
   },
 }
+
+
+crud Skill {
+  entity: Skill,
+  operations: {
+    getAll: {
+      isPublic: true, // by default only logged in users can perform operations
+    },
+    get: { isPublic: true,},
+    create: { isPublic: true,
+    },
+    update: { isPublic: true,},
+  },
+}
