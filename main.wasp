@@ -8,7 +8,7 @@ app task_assignment {
   ],
   db: {
     seeds: [
-      
+      import {devSeedSimple } from "@src/dbSeeds.js" // we import js as wasp compiler automatically compile ts
     ]
   }
 }
