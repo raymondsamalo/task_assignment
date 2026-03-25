@@ -1,5 +1,12 @@
 import Logo from "./assets/logo.svg";
 import "./Main.css";
+import { getTasks, getDevelopers, getSkills } from 'wasp/client/operations'
+
+// TypeScript automatically infers the return values and type-checks
+// the payloads.
+const tasks = await getTasks()
+const developers = await getDevelopers()
+const skills = await getSkills()
 export function MainPage() {
 
   return (
@@ -12,6 +19,24 @@ export function MainPage() {
         This is page <code>MainPage</code> located at route <code>/</code>.
         <br />
         Open <code>src/MainPage.tsx</code> to edit it.
+        <h1>Skills</h1>
+        <ul>
+          {skills.map((skill, index)=>(
+              <li key={index}>{skill.name}</li> 
+          ))}
+        </ul>
+        <h1>Developers</h1>
+        <ul>
+          {developers.map((developer, index)=>(
+              <li key={index}>{developer.name}</li> 
+          ))}
+        </ul>
+        <h1>Tasks</h1>
+        <ul>
+          {tasks.map((task, index)=>(
+              <li key={index}>{task.title}</li> 
+          ))}
+        </ul>
       </p>
 
       <div className="buttons">
@@ -21,7 +46,6 @@ export function MainPage() {
           target="_blank"
           rel="noreferrer noopener"
         >
-          Take the Tutorial
         </a>
         <a
           className="button button-outlined"
