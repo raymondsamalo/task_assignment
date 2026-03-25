@@ -1,8 +1,6 @@
 import Logo from "./assets/logo.svg";
 import "./Main.css";
-import {Skill} from 'wasp/client/crud'
 export function MainPage() {
-  const { data: skills, isLoading, error } = Skill.getAll.useQuery()
 
   return (
     <main className="container">
@@ -15,11 +13,7 @@ export function MainPage() {
         <br />
         Open <code>src/MainPage.tsx</code> to edit it.
       </p>
-      <ul>
-        {skills?.map((skill)=>(
-          <li key={skill.id}>{skill.name}</li>
-        ))}
-      </ul>
+
       <div className="buttons">
         <a
           className="button button-filled"

@@ -19,47 +19,7 @@ page MainPage {
 }
 
 
-crud Tasks {
-  entity: Task,
-  operations: {
-    getAll: {
-      isPublic: true, // by default only logged in users can perform operations
-    },
-    get: { isPublic: true,},
-    create: { isPublic: true,
-    },
-    update: { isPublic: true,},
-  },
-}
-
-crud Developers {
-  entity: Developer,
-  operations: {
-    getAll: {
-      isPublic: true, // by default only logged in users can perform operations
-    },
-    get: { isPublic: true,},
-    create: { isPublic: true,
-    },
-    update: { isPublic: true,},
-  },
-}
-
-
-crud Skill {
-  entity: Skill,
-  operations: {
-    getAll: {
-      isPublic: true, // by default only logged in users can perform operations
-    },
-    get: { isPublic: true,},
-    create: { isPublic: true,
-    },
-    update: { isPublic: true,},
-  },
-}
-
-
+// External API definitions
 api listSkill { // APIs and their implementations don't need to (but can) have the same name.
   fn: import { listSkill } from "@src/apis",
   entities: [Skill],
@@ -102,4 +62,33 @@ api updateTask { // APIs and their implementations don't need to (but can) have 
   fn: import { updateTask } from "@src/apis",
   entities: [Task, Developer],
   httpRoute: (PUT, "/api/v1/tasks/:id")
+}
+
+// Internal Query and Action definitions
+query getTasks {
+  fn: import { getTasks } from "@src/queries",
+  entities: [Task],
+}
+query getDevelopers {
+  fn: import { getDevelopers } from "@src/queries",
+  entities: [Developer],
+
+}
+query getSkills {
+  fn: import { getSkills } from "@src/queries",
+  entities: [Skill],
+}
+
+query getTask {
+  fn: import { getTask } from "@src/queries",
+  entities: [Task],
+}
+query getDeveloper {
+  fn: import { getDeveloper } from "@src/queries",
+  entities: [Developer],
+
+}
+query getSkill {
+  fn: import { getSkill } from "@src/queries",
+  entities: [Skill],
 }
