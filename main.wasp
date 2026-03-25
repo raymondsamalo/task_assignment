@@ -97,3 +97,9 @@ api createTask { // APIs and their implementations don't need to (but can) have 
   entities: [Task],
   httpRoute: (POST, "/api/v1/tasks/")
 }
+
+api updateTask { // APIs and their implementations don't need to (but can) have the same name.
+  fn: import { updateTask } from "@src/apis",
+  entities: [Task, Developer],
+  httpRoute: (PUT, "/api/v1/tasks/:id")
+}
